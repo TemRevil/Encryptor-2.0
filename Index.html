@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Tem Revil Developer Profile">
+    <meta name="keywords" content="TemRevil, Tem Revil, Encryptor, Secure, Security, Generator, Password, Password Generator, Wordlist, Wordlist Generator, Gen, Passkey, Key, Pass, Encryption, Password Game">
+    <meta name="author" content="Tem Revil">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#124fff50">
+    <meta name="referrer" content="no-referrer">
+
+    <link rel="icon" href="Background/icon.png" type="image/gif">
+    <title>Encryptor | Beta</title>
+
+    <link rel="stylesheet" href="CSS/all.css">
+    <link rel="stylesheet" id="canvas-stylesheet" href="CSS/Canvas.css">
+    <link rel="stylesheet" id="theme-stylesheet" href="CSS/Main.css">
+</head>
+<body>
+    <nav class="flex row between">
+        <div class="flex row center">
+            <a href="Index.html"><div class="img transition"><img src="Background/icon.png" alt="Encryptor"></div></a>
+            <a href="#" class="links">Team</a>
+            <a href="#" class="links">Virsions</a>
+        </div>
+        <div class="flex col center transition">
+            <button class="mode-btn img transition" id="dark-mode"><img src="Background/icons/Dark-Mode.png" alt="DM"></button>
+            <button class="mode-btn img transition" id="light-mode"><img src="Background/icons/Light-Mode.png" alt="LM"></button>
+        </div>
+    </nav>
+    <div class="bouncing-blobs-container">
+        <div class="bouncing-blobs-glass"></div>
+        <div class="bouncing-blobs">
+          <div class="bouncing-blob bouncing-blob--blue"></div>
+          <div class="bouncing-blob bouncing-blob--blue"></div>
+          <div class="bouncing-blob bouncing-blob--blue"></div>
+          <div class="bouncing-blob bouncing-blob--white"></div>
+          <div class="bouncing-blob bouncing-blob--purple"></div>
+          <div class="bouncing-blob bouncing-blob--purple"></div>
+          <div class="bouncing-blob bouncing-blob--pink"></div>
+        </div>
+    </div>
+    <section class="home flex row">
+        <section class="title-card flex col">
+            <p class="title">Encryptor</p>
+            <p class="align">More Secure, More Beter</p>
+            <div class="section-option flex row gap">
+                <button id="close-section" class="off"><i class="fa-solid fa-angle-left"></i></button>
+                <span id="section-name" class="align">Home</span>
+            </div>
+        </section>
+        <section class="cards-box flex col">
+            <div class="card flex row">
+                <div class="card-data flex col">
+                    <p class="align-2">Generator</p>
+                    <p class="text">"Generate Your Passkey, Where Your Imagination Can Soar. Get a Password Up to 1024 Characters."</p>
+                </div>
+                <div class="img">
+                    <img src="Background/Cards/Generator.png" alt="Generator">
+                    <button class="btn align" id="Generator">Generator</button>
+                </div>
+            </div>
+            <div class="card flex row">
+                <div class="card-data flex col">
+                    <p class="align-2">Wordlist</p>
+                    <p class="text">"Generate Your Custom Wordlist, Designed for Hackers Seeking Security and Flexibility."</p>
+                </div>
+                <div class="img">
+                    <img src="Background/Cards/Wordlist.png" alt="Wordlist">
+                    <button class="btn align" id="Wordlist">Wordlist</button>
+                </div>
+            </div>
+            <div class="card flex row">
+                <div class="card-data flex col">
+                    <p class="align-2">PassQuest</p>
+                    <p class="text">"Challenge Your Mind with the Password Game – Master the Art of Creating Unbreakable Passwords!"</p>
+                </div>
+                <div class="img">
+                    <img src="Background/Cards/PassQuest.png" alt="PassQuest">
+                    <button class="btn align" id="PassQuest">PassQuest</button>
+                </div>
+            </div>
+        </section>
+        <section class="generator flex col center gap off">
+            <div class="flex col gap">
+                <div class="flex row gap">
+                    <button class="check-box text" id="Nums">1234...</button>
+                    <button class="check-box text" id="Capitalize">ABCD...</button>
+                </div>
+                <div class="flex row gap">
+                    <button class="check-box text" id="Sympols">!@#$...</button>
+                    <button class="check-box text" id="Lowercase">abcd...</button>
+                </div>
+            </div>
+            <div class="box flex row center gap">
+                <span id="range-num" class="text">228</span>
+                <label class="slider">
+                    <input type="range" class="level" id="pass-length" value="228" min="8" max="1024">
+                </label>
+            </div>
+            <div class="box flex col center gap">
+                <input type="text" id="g-pass-input" class="text">
+                <div class="flex row center gap">
+                    <button class="btn-2 text" id="generate-pass">Generate</button>
+                    <button class="btn-2 text" id="copy-pass">Copy</button>
+                    <button class="btn-2 text" id="save-pass">Save</button>
+                </div>
+                <span id="generator-alert" class="text"></span>
+            </div>
+        </section>
+        <section class="wordlist flex col center gap off">
+            <div class="box flex col">
+                <p class="align-2">Wordlist</p>
+                <p class="align">Characters</p>
+                <input type="text" id="wordlist-input" class="text" minlength="1" maxlength="41">
+                <p class="align">Range</p>
+                <div class="wordlist-range-box flex row gap">
+                    <div class="flex col">
+                        <p class="text">Min</p>
+                        <input type="text" id="wordlist-range-min" class="text" minlength="1" maxlength="2">
+                    </div>
+                    <div class="flex col">
+                        <p class="text">Max</p>
+                        <input type="text" id="wordlist-range-max" class="text" minlength="1" maxlength="2">
+                    </div>
+                </div>
+                <button class="btn-2 text" id="wordlist-generate">Generate</button>
+                <button class="btn-2 text" id="wordlist-download">Download</button>
+                <span id="wordlist-alert" class="text"></span>
+            </div>
+            <div id="wordlist-download-box" class="box flex col center off">
+                <p class="align-2">Download...</p>
+                <div class="wordlist-download-live flex row center gap">
+                    <span id="wordlist-download-percent" class="text">0%</span>
+                    <div class="load">
+                        <div class="load-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="passquest flex col center gap off">
+            <div class="box flex col gap">
+                <input type="text" id="passquest-input" class="text" placeholder="Write Here...">
+                <div class="flex row center gap">
+                    <button class="btn-2 text" id="passquest-surrender">Surrender</button>
+                    <button class="btn-2 text" id="passquest-copy">Copy</button>
+                </div>
+                <span id="passquest-alert" class="text"></span>
+            </div>
+            <div class="flex col center gap" id="passquest-quests">
+                <!-- Quest Boxes Collected By PassQuest.js -->
+            </div>
+        </section>
+    </section>
+    <section class="modal flex center off">
+        <div class="save-box flex col gap">
+            <p class="align">Saveing...</p>
+            <hr>
+            <div class="saving-box-input flex col gap">
+                <label for="Email" class="text">Email</label>
+                <input type="text" id="Email" class="input text" placeholder="Email, Username, Description...">
+                <label for="pass-key" class="text">Password</label>
+                <input type="text" id="pass-key" class="input text" placeholder="Password">
+                <span id="saving-alert" class="text"></span>
+            </div>
+            <hr>
+            <div class="save-box-btn flex row gap">
+                <button class="btn-2 text" id="pass-saving">Save</button>
+                <button class="btn-2 text" id="close-modal">Close</button>
+            </div>
+        </div>
+    </section>
+    <script src="JavaScript/all.js"></script>
+    <script src="JavaScript/Canvas.js"></script>
+    <script src="JavaScript/Main.js"></script>
+    <script src="JavaScript/Generator.js"></script>
+    <script src="JavaScript/Wordlist.js"></script>
+    <script src="JavaScript/PassQuest.js"></script>
+</body>
+</html>
