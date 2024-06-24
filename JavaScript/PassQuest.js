@@ -1,8 +1,9 @@
+// Data Quest
 const DataQuest = [
     {
         id: 1,
-        text: "Your Pass Must Include One Character At Least.",
-        validate: (input) => input.length >= 1
+        text: "Your Pass Must Include 3 Character At Least.",
+        validate: (input) => input.length >= 3
     },
     {
         id: 2,
@@ -13,6 +14,16 @@ const DataQuest = [
         id: 3,
         text: "Your Pass Must Be At Least 8 Characters Long.",
         validate: (input) => input.length >= 8
+    },
+    {
+        id: 4,
+        text: "Your Pass Must Include At Least One Uppercase Letter.",
+        validate: (input) => /[A-Z]/.test(input)
+    },
+    {
+        id: 5,
+        text: "Your Pass Must Include At Least One Special Character.",
+        validate: (input) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(input)
     }
 ];
 // -----------------------------------------------------------
@@ -59,5 +70,29 @@ function checkCurrentQuest() {
 document.addEventListener('DOMContentLoaded', () => {
     const passquestInput = document.getElementById('passquest-input');
     passquestInput.addEventListener('input', checkCurrentQuest);
+
+    const surrenderButton = document.getElementById('passquest-surrender');
+    surrenderButton.addEventListener('click', () => {
+        passquestInput.disabled = true; // disable the input field
+        passquestInput.readOnly = true; // make the input field read-only
+        const alertElement = document.getElementById('passquest-alert');
+        alertElement.textContent = 'You have surrendered.';
+    });
+
+    const copyButton = document.getElementById('passquest-copy');
+    copyButton.addEventListener('click', () => {
+        const input = document.getElementById('passquest-input').value;
+        const tempInput = document.createElement('input');
+        tempInput.value = input;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        const alertElement = document.getElementById('passquest-alert');
+        alertElement.textContent = 'Value copied to clipboard.';
+        setTimeout(() => {
+            alertElement.textContent = '';
+        }, 3000);
+    });
 });
 // -----------------------------------------------------------

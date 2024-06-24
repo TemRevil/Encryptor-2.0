@@ -5,8 +5,8 @@ const themeStylesheet = document.getElementById('theme-stylesheet');
 const canvasStylesheet = document.getElementById('canvas-stylesheet');
 
 window.addEventListener('DOMContentLoaded', () => {
-    const theme = localStorage.getItem('theme') || 'CSS/Main-Light.css';
-    const canvasTheme = localStorage.getItem('canvasTheme') || 'CSS/Canvas-Light.css';
+    const theme = localStorage.getItem('theme') || 'CSS/Main.css';
+    const canvasTheme = localStorage.getItem('canvasTheme') || 'CSS/Canvas.css';
     themeStylesheet.setAttribute('href', theme);
     canvasStylesheet.setAttribute('href', canvasTheme);
 });

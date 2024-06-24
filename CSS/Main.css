@@ -129,6 +129,7 @@ p {
     font-size: 150px;
     color: var(--ghost-white);
     transition: 0.2s 0s linear;
+    animation: fade-in 0.7s 0s forwards ease-in-out;
 }
 .align {
     font-family: 'Rubik', 'Exo', 'Cairo';
@@ -136,6 +137,7 @@ p {
     font-size: 24px;
     color: var(--ghost-white);
     transition: 0.2s 0s linear;
+    animation: fade-in 0.7s 0s forwards ease-in-out;
 }
 .align-2 {
     font-family: 'Cairo', 'Exo', 'Rubik';
@@ -143,6 +145,7 @@ p {
     font-size: 42px;
     color: var(--ghost-white);
     transition: 0.2s 0s linear;
+    animation: fade-in 0.7s 0s forwards ease-in-out;
 }
 .text {
     font-family: 'Rubik', 'Exo', 'Cairo';
@@ -221,10 +224,12 @@ nav .links {
 /* Mains */
 .home {
     width: 100%;
+    flex-wrap: wrap;
 }
 .generator, .wordlist, .passquest {
     width: 50%;
     padding: 20px;
+    animation: get-in 0.5s 0s forwards ease-in-out;
 }
 /* -------------------------------------------------- */
 /* Titles */
@@ -263,11 +268,12 @@ nav .links {
 
 .card {
     width: 95%;
-    max-height: 200px;
+    max-height: 210px;
     background-color: var(--rich-light);
     border-radius: 15px;
     box-shadow: 0px 7px 100px var(--box-shadow);
     overflow: hidden;
+    animation: fade-in 0.5s 0s forwards ease-in-out;
 }
 .card .text {
     font-size: 18px;
@@ -401,6 +407,7 @@ nav .links {
     background-color: var(--ghost-white);
     border-radius: 10px;
     box-shadow: 0px 7px 1000px var(--box-shadow);
+    animation: get-in 0.7s 0s forwards ease-in-out;
 }
 .modal .gap {
     gap: 5px;
@@ -441,6 +448,9 @@ nav .links {
 }
 /* -------------------------------------------------- */
 /* Wordlist */
+.wordlist .gap {
+    gap: 10px;
+}
 #wordlist-input {
     width: 95%;
     padding: 10px 20px;
@@ -463,9 +473,6 @@ nav .links {
     outline: none;
     border: none;
     border-radius: 5px;
-}
-#wordlist-generate, #wordlist-download {
-    margin-top: 10px;
 }
 
 .wordlist-download-live {
@@ -497,8 +504,68 @@ nav .links {
     border: none;
     border-radius: 5px;
 }
+#passquest-quests {
+    max-height: 300px;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+}
+#passquest-quests .box {
+    scroll-snap-align: start;
+}
 .active {
     background-color: #3395ff;
+}
+/* -------------------------------------------------- */
+/* Team Section */
+.team {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+.team .box {
+    width: fit-content;
+    min-width: 320px;
+    gap: 20px;
+    animation: get-in 0.7s 0s forwards ease-in-out;
+}
+.team .box .img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.15s 0s ease-in-out;
+}
+.team .box .img:hover {
+    scale: 1.05;
+    filter: saturate(1.2);
+}
+.team .box .img:active {
+    scale: 1;
+}
+
+.team .box hr {
+    min-height: 100%;
+    border: 2px var(--box-shadow) solid;
+    border-radius: 999px;
+    transition: 0.2s 0s ease-in-out;
+}
+.team .box:hover hr {
+    border: 2px #ffffff99 solid;
+}
+
+.icons {
+    width: 100%;
+    gap: 10px;
+}
+.icons svg {
+    font-size: 72px;
+}
+#temrevil, #eslam {
+    height: fit-content;
+    position: relative;
+    top: 200px;
 }
 /* -------------------------------------------------- */
 /* Modals */
@@ -514,6 +581,155 @@ nav .links {
     background-color: #091330b4;
 }
 /* -------------------------------------------------- */
+/* Responsive Yard */
+@media (min-width: 1025px) and (max-width: 1425px) {
+    .title {
+        font-size: 105px;
+    }
+
+    .card .text {
+        font-size: 15px;
+    }
+}
+@media (min-width: 481px) and (max-width: 1024px) {
+    .title-card, .generator, .wordlist, .passquest {
+        width: 100%;
+    }
+    .cards-box {
+        width: 100%;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center;
+    }
+    .card {
+        width: fit-content;
+    }
+
+    /* Team Media */
+    .team {
+        justify-content: center;
+        padding: 20px;
+    }
+    .team .box {
+        max-width: 300px;
+        min-width: 300px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .team .box .img {
+        width: 220px;
+        height: 220px;
+    }
+    .team hr {
+        width: 100%;
+    }
+    .team .box .align-2 {
+        font-size: 30px;
+    }
+    #temrevil, #eslam {
+        top: 0;
+    }
+}
+@media (max-width: 768px) {
+    .title {
+        font-size: 95px;
+    }
+    
+    .title-card, .generator, .wordlist, .passquest {
+        width: 100%;
+    }
+    .section-option {
+        position: relative;
+    }
+    .title-card .align {
+        width: 100%;
+    }
+    #section-name {
+        width: 100%;
+        text-align: center;
+    }
+    #close-section {
+        position: absolute;
+    }
+
+    .cards-box {
+        width: 100%;
+        align-items: center;
+    }
+    .card {
+        max-height: fit-content;
+        flex-wrap: wrap;
+    }
+    .card .img {
+        width: 100%;
+        height: auto;
+    }
+    .card-data {
+        width: 100%;
+    }
+
+    .check-box {
+        width: 206px;
+    }
+
+    /* Team Media */
+    .team {
+        justify-content: center;
+        padding: 20px;
+    }
+    .team .box {
+        max-width: 300px;
+        min-width: 300px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .team .box .img {
+        width: 220px;
+        height: 220px;
+    }
+    .team hr {
+        width: 100%;
+    }
+    .team .box .align-2 {
+        font-size: 30px;
+    }
+    #temrevil, #eslam {
+        top: 0;
+    }
+}
+@media (max-width: 480px) {
+    .title {
+        font-size: 62px;
+    }
+    .align {
+        font-size: 22px;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .title-card {
+        padding: 15px;
+    }
+
+    .cards-box {
+        padding: 10px;
+    }
+    .card-data {
+        padding: 10px;
+    }
+    .check-box {
+        width: 140px;
+        height: 130px;
+        font-size: 26px;
+    }
+    .btn-2 {
+        padding: 10px;
+        font-size: 18px;
+    }
+}
+/* -------------------------------------------------- */
 /* Keyfarmes */
 @keyframes LD-Mode {
     0% {
@@ -526,5 +742,23 @@ nav .links {
     }
     100% {
         scale: 1;
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes get-in {
+    from {
+        opacity: 0;
+        margin-top: 100px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0px;
     }
 }
