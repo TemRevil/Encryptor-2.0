@@ -58,7 +58,7 @@ function loadNextQuest() {
       <hr>
       <p class="text">${quest.text}</p>
     `;
-    questsContainer.appendChild(questBox); // Append to the end of the container
+    questsContainer.prepend(questBox); // Prepend to the beginning of the container
   }
 }
 
@@ -71,12 +71,14 @@ function checkInput(input) {
   for (let i = 0; i < passwordQuests.length; i++) {
     const quest = passwordQuests[i];
     const questBox = document.querySelector(`div[data-quest-id='${quest.id}']`);
-    if (quest.validate(input)) {
-      // Add active class if input matches the quest
-      questBox.classList.add('active');
-    } else {
-      // Remove active class if input no longer matches the quest
-      questBox.classList.remove('active');
+    if (questBox!== null) { 
+      if (quest.validate(input)) {
+        // Add active class if input matches the quest
+        questBox.classList.add('active');
+      } else {
+        // Remove active class if input no longer matches the quest
+        questBox.classList.remove('active');
+      }
     }
   }
 }
@@ -85,13 +87,15 @@ function validateCurrentQuest(input) {
   if (currentQuestIndex < passwordQuests.length) {
     const quest = passwordQuests[currentQuestIndex];
     const questBox = document.querySelector(`div[data-quest-id='${quest.id}']`);
-    if (quest.validate(input)) {
-      questBox.classList.add('active');
-      currentQuestIndex++;
-      loadNextQuest(); // Load the next quest
-    } else {
-      // Remove active class if input no longer matches the quest
-      questBox.classList.remove('active');
+    if (questBox!== null) { 
+      if (quest.validate(input)) {
+        questBox.classList.add('active');
+        currentQuestIndex++;
+        loadNextQuest(); // Load the next quest
+      } else {
+        // Remove active class if input no longer matches the quest
+        questBox.classList.remove('active');
+      }
     }
   }
 }
