@@ -1,3 +1,19 @@
+// Nav Links
+const navLinks = {
+    home: document.getElementById('home-link'),
+    team: document.getElementById('team-link')
+};
+const navSections = {
+    home: document.querySelector('.home'),
+    team: document.querySelector('.team')
+};
+Object.keys(navLinks).forEach(key => {
+    navLinks[key].addEventListener('click', event => {
+    event.preventDefault();
+    Object.keys(navSections).forEach(k => navSections[k].classList.toggle('off', k!== key));
+    });
+});
+// -----------------------------------------------------------
 // Light - Dark Mode Toggle Event
 const lightModeButton = document.getElementById('light-mode');
 const darkModeButton = document.getElementById('dark-mode');
@@ -32,86 +48,57 @@ const defaultText = 'Home';
 const defaultFontFamily = 'rubik';
 const defaultColor = 'var(--ghost-white)';
 
+const homeSections = {
+  Generator: { text: 'Generator', fontFamily: 'Saira', color: 'var(--french-rose)' },
+  Wordlist: { text: 'Wordlist', fontFamily: 'Spacemono', color: 'var(--sgbus-green)' },
+  PassQuest: { text: 'PassQuest', fontFamily: 'Amatic', color: 'var(--non-photo-blue)' }
+};
+
 function changeText(newText, fontFamily, color) {
-    void sectionName.offsetWidth; // Trigger reflow to restart animation
+  sectionName.style.fontFamily = fontFamily;
+  sectionName.style.color = color;
+  
+  let currentText = sectionName.textContent;
+  let maxLength = Math.max(currentText.length, newText.length);
+  let i = 0;
+  const totalDuration = 1000;
+  const intervalTime = 50;
+  const steps = totalDuration / intervalTime;
+  
+  let interval = setInterval(() => {
+    if (i >= steps) {
+      clearInterval(interval);
+      sectionName.textContent = newText;
+      return;
+    }
     
-    let currentText = sectionName.textContent;
-    let maxLength = Math.max(currentText.length, newText.length);
-    let tempText = '';
-    let i = 0;
-    const totalDuration = 1000; // Duration in milliseconds
-    const intervalTime = 50; // Interval time in milliseconds
-    const steps = totalDuration / intervalTime;
+    let randomText = '';
+    for (let j = 0; j < maxLength; j++) {
+      randomText += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+    }
+    sectionName.textContent = newText.substring(0, Math.floor((i / steps) * newText.length)) + randomText.substring(Math.floor((i / steps) * newText.length));
     
-    sectionName.style.fontFamily = fontFamily; // Change the font family
-    sectionName.style.color = color; // Change the color
-    
-    let interval = setInterval(() => {
-        if (i >= steps) {
-            clearInterval(interval);
-            sectionName.textContent = newText;
-            return;
-        }
-        
-        let randomText = '';
-        for (let j = 0; j < maxLength; j++) {
-            randomText += String.fromCharCode(33 + Math.floor(Math.random() * 94)); // Generate random ASCII character
-        }
-        tempText = newText.substring(0, Math.floor((i / steps) * newText.length)) + randomText.substring(Math.floor((i / steps) * newText.length));
-        sectionName.textContent = tempText;
-        
-        i++;
-    }, intervalTime);
+    i++;
+  }, intervalTime);
 }
 
-function showSection(sectionId) {
-    // Hide the cards-box section
-    document.querySelector('.cards-box').classList.add('off');
-    
-    // Hide all sections first
-    document.querySelectorAll('section').forEach(section => {
-        if (section.classList.contains('generator') || section.classList.contains('wordlist') || section.classList.contains('passquest')) {
-            section.classList.add('off');
-        }
-    });
-    
-    // Show the selected section
-    document.querySelector(`.${sectionId}`).classList.remove('off');
-    
-    // Show the close button
+function toggleSection(sectionId, show) {
+  document.querySelector(`.${sectionId}`).classList.toggle('off',!show);
+}
+
+Object.keys(homeSections).forEach(key => {
+  document.getElementById(key).addEventListener('click', () => {
+    changeText(homeSections[key].text, homeSections[key].fontFamily, homeSections[key].color);
+    toggleSection(key.toLowerCase(), true);
+    toggleSection('cards-box', false);
     closeButton.classList.remove('off');
-}
-
-document.getElementById('Generator').addEventListener('click', () => {
-    changeText('Generator', 'Saira', 'var(--french-rose)');
-    showSection('generator');
-});
-
-document.getElementById('Wordlist').addEventListener('click', () => {
-    changeText('Wordlist', 'Spacemono', 'var(--sgbus-green)');
-    showSection('wordlist');
-});
-
-document.getElementById('PassQuest').addEventListener('click', () => {
-    changeText('PassQuest', 'Amatic', 'var(--non-photo-blue)');
-    showSection('passquest');
+  });
 });
 
 closeButton.addEventListener('click', () => {
-    // Hide all sections
-    document.querySelectorAll('section').forEach(section => {
-        if (section.classList.contains('generator') || section.classList.contains('wordlist') || section.classList.contains('passquest')) {
-            section.classList.add('off');
-        }
-    });
-    
-    // Show the cards-box section
-    document.querySelector('.cards-box').classList.remove('off');
-    
-    // Change the sectionName back to defaultText with default font and color
-    changeText(defaultText, defaultFontFamily, defaultColor);
-    
-    // Hide the close button
-    closeButton.classList.add('off');
+  Object.keys(homeSections).forEach(key => toggleSection(key.toLowerCase(), false));
+  toggleSection('cards-box', true);
+  changeText(defaultText, defaultFontFamily, defaultColor);
+  closeButton.classList.add('off');
 });
 // -----------------------------------------------------------

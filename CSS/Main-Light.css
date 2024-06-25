@@ -505,7 +505,6 @@ nav .links {
     border-radius: 5px;
 }
 #passquest-quests {
-    max-height: 300px;
     overflow: auto;
     scroll-snap-type: y mandatory;
 }
