@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Tem Revil Developer Profile">
+    <meta name="keywords" content="TemRevil, Tem Revil, Encryptor, Secure, Security, Generator, Password, Password Generator, Wordlist, Wordlist Generator, Gen, Passkey, Key, Pass, Encryption, Password Game">
+    <meta name="author" content="Tem Revil">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#124fff50">
+    <meta name="referrer" content="no-referrer">
+
+    <link rel="icon" href="Background/icon.png" type="image/gif">
+    <title>Encryptor | Beta</title>
+
+    <link rel="stylesheet" href="CSS/all.css">
+    <link rel="stylesheet" href="CSS/Canvas.css">
+    <link rel="stylesheet" id="theme-stylesheet" href="CSS/Main.css">
+</head>
+<body>
+    <nav class="flex row between">
+        <div class="flex row center" id="nav-container">
+          <a href="Index.html"><div class="img transition"><img src="Background/icon.png" alt="Encryptor"></div></a>
+          <a href="#" class="links" id="home-link">Home</a>
+          <a href="#" class="links" id="team-link">Team</a>
+          <div class="drop-box flex col">
+            <a href="#" class="links">Virsions</a>
+            <div class="drop-menu flex col">
+              <a href="https://temrevil.github.io/Encryptor/Index.html" target="_blank" class="links">v4.67.3 Dev</a>
+            </div>
+          </div>
+        </div>
+        <div class="flex col gap" id="nav-collapse-box">
+          <button class="flex center text" id="nav-collapse">
+            <svg fill="#fff" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32.055 32.055" xml:space="preserve" stroke="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g><path d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967 C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967 s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967 c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z"></path></g></g></svg>
+          </button>
+        </div>
+        <div class="flex col center transition">
+          <button class="mode-btn img transition" id="dark-mode"><img src="Background/icons/Dark-Mode.png" alt="DM"></button>
+          <button class="mode-btn img transition" id="light-mode"><img src="Background/icons/Light-Mode.png" alt="LM"></button>
+        </div>
+    </nav>
+    <div class="bouncing-blobs-container">
+        <div class="bouncing-blobs-glass"></div>
+        <div class="bouncing-blobs">
+          <div class="bouncing-blob bouncing-blob--blue"></div>
+          <div class="bouncing-blob bouncing-blob--blue"></div>
+          <div class="bouncing-blob bouncing-blob--blue"></div>
+          <div class="bouncing-blob bouncing-blob--blue-2"></div>
+          <div class="bouncing-blob bouncing-blob--blue-2"></div>
+          <div class="bouncing-blob bouncing-blob--purple"></div>
+          <div class="bouncing-blob bouncing-blob--purple"></div>
+          <div class="bouncing-blob bouncing-blob--blue-3"></div>
+        </div>
+    </div>
+    <section class="home flex row">
+        <section class="title-card flex col">
+            <p class="title">Encryptor</p>
+            <p class="align">More Secure, More Beter</p>
+            <div class="section-option flex row gap">
+                <button id="close-section" class="off"><i class="fa-solid fa-angle-left"></i></button>
+                <span id="section-name" class="align">Home</span>
+            </div>
+        </section>
+        <section class="cards-box flex col">
+            <div class="card flex row">
+                <div class="card-data flex col">
+                    <p class="align-2">Generator</p>
+                    <p class="text">"Generate Your Passkey, Where Your Imagination Can Soar. Get a Password Up to 1024 Characters."</p>
+                </div>
+                <div class="img">
+                    <img src="Background/Cards/Generator.png" alt="Generator">
+                    <button class="btn align" id="Generator">Generator</button>
+                </div>
+            </div>
+            <div class="card flex row">
+                <div class="card-data flex col">
+                    <p class="align-2">Wordlist</p>
+                    <p class="text">"Generate Your Custom Wordlist, Designed for Hackers Seeking Security and Flexibility."</p>
+                </div>
+                <div class="img">
+                    <img src="Background/Cards/Wordlist.png" alt="Wordlist">
+                    <button class="btn align" id="Wordlist">Wordlist</button>
+                </div>
+            </div>
+            <div class="card flex row">
+                <div class="card-data flex col">
+                    <p class="align-2">PassQuest</p>
+                    <p class="text">"Challenge Your Mind with the Password Game – Master the Art of Creating Unbreakable Passwords!"</p>
+                </div>
+                <div class="img">
+                    <img src="Background/Cards/PassQuest.png" alt="PassQuest">
+                    <button class="btn align" id="PassQuest">PassQuest</button>
+                </div>
+            </div>
+        </section>
+        <section class="generator flex col center gap off">
+            <div class="flex col gap">
+                <div class="flex row gap">
+                    <button class="check-box text" id="Nums">1234...</button>
+                    <button class="check-box text" id="Capitalize">ABCD...</button>
+                </div>
+                <div class="flex row gap">
+                    <button class="check-box text" id="Sympols">!@#$...</button>
+                    <button class="check-box text" id="Lowercase">abcd...</button>
+                </div>
+            </div>
+            <div class="box flex row center gap">
+                <span id="range-num" class="text">228</span>
+                <label class="slider">
+                    <input type="range" class="level" id="pass-length" value="228" min="8" max="1024">
+                </label>
+            </div>
+            <div class="box flex col center gap">
+                <input type="text" id="g-pass-input" class="text">
+                <div class="flex row center gap">
+                    <button class="btn-2 text" id="generate-pass">Generate</button>
+                    <button class="btn-2 text" id="copy-pass">Copy</button>
+                    <button class="btn-2 text" id="save-pass">Save</button>
+                </div>
+                <span id="generator-alert" class="text"></span>
+            </div>
+        </section>
+        <section class="wordlist flex col center gap off">
+            <div class="box flex col gap">
+                <p class="align-2">Wordlist</p>
+                <p class="align">Characters</p>
+                <input type="text" id="wordlist-input" class="text" minlength="1" maxlength="41">
+                <p class="align">Range</p>
+                <div class="wordlist-range-box flex row gap">
+                    <div class="flex col">
+                        <p class="text">Min</p>
+                        <input type="text" id="wordlist-range-min" class="text" minlength="1" maxlength="2">
+                    </div>
+                    <div class="flex col">
+                        <p class="text">Max</p>
+                        <input type="text" id="wordlist-range-max" class="text" minlength="1" maxlength="2">
+                    </div>
+                </div>
+                <button class="btn-2 text" id="wordlist-generate">Generate</button>
+                <button class="btn-2 text" id="wordlist-download">Download</button>
+                <span id="wordlist-alert" class="text"></span>
+            </div>
+            <div id="wordlist-download-box" class="box flex col center off">
+                <p class="align-2">Download...</p>
+                <div class="wordlist-download-live flex row center gap">
+                    <span id="wordlist-download-percent" class="text">0%</span>
+                    <div class="load">
+                        <div class="load-slider"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="passquest flex col center gap off">
+            <div class="box flex col gap">
+                <div class="flex row center gap">
+                    <input type="text" id="passquest-input" class="text" placeholder="Write Here...">
+                    <span class="text" id="passquest-input-num">0</span>
+                </div>
+                <div class="flex row center gap">
+                    <button class="btn-2 text" id="passquest-surrender">Surrender</button>
+                    <button class="btn-2 text" id="passquest-copy">Copy</button>
+                </div>
+                <span id="passquest-alert" class="text"></span>
+            </div>
+            <div class="flex col center gap" id="passquest-quests">
+                <!-- Quest Boxes Collected By PassQuest.js -->
+            </div>
+        </section>
+    </section>
+    <section class="team flex row off">
+        <div class="box flex row">
+            <div class="img"><img src="Background/Team/Dev.Mohammed.png" alt="Tem Revil"></div>
+            <hr>
+            <div class="flex col between">
+                <div class="flex col">
+                    <p class="align-2">Mohammed Ahmed</p>
+                    <p class="align">Front-End Dev</p>
+                    <p class="align">Designer & Coder</p>
+                </div>
+                <div class="flex row icons">
+                    <i class="fa-brands fa-html5" style="color: #ff4000;"></i>
+                    <i class="fa-brands fa-css3-alt" style="color: #0062ff;"></i>
+                    <i class="fa-brands fa-square-js" style="color: #ffa200;"></i>
+                </div>
+            </div>
+            <button class="btn-2 text" id="temrevil">Portfolio</button>
+        </div>
+        <div class="box flex row">
+            <div class="img"><img src="Background/Team/Dev.Eslam.jpg" alt="Eslam Fathy"></div>
+            <hr>
+            <div class="flex col between">
+                <div class="flex col">
+                    <p class="align-2">Eslam Fathy</p>
+                    <p class="align">Front-End Dev</p>
+                    <p class="align">Coding Consultant</p>
+                </div>
+                <div class="flex row icons">
+                    <i class="fa-brands fa-html5" style="color: #ff4000;"></i>
+                    <i class="fa-brands fa-css3-alt" style="color: #0062ff;"></i>
+                    <i class="fa-brands fa-square-js" style="color: #ffa200;"></i>
+                    <i class="fa-brands fa-react" style="color: #00d5ff;"></i>
+                </div>
+            </div>
+            <button class="btn-2 text" id="eslam">Portfolio</button>
+        </div>
+    </section>
+    <section class="modal flex center off">
+        <div class="save-box flex col gap">
+            <p class="align">Saveing...</p>
+            <hr>
+            <div class="saving-box-input flex col gap">
+                <label for="Email" class="text">Email</label>
+                <input type="text" id="Email" class="input text" placeholder="Email, Username, Description...">
+                <label for="pass-key" class="text">Password</label>
+                <input type="text" id="pass-key" class="input text" placeholder="Password">
+                <span id="saving-alert" class="text"></span>
+            </div>
+            <hr>
+            <div class="save-box-btn flex row gap">
+                <button class="btn-2 text" id="pass-saving">Save</button>
+                <button class="btn-2 text" id="close-modal">Close</button>
+            </div>
+        </div>
+    </section>
+    <script src="JavaScript/all.js"></script>
+    <script src="JavaScript/Canvas.js"></script>
+    <script src="JavaScript/Main.js"></script>
+    <script src="JavaScript/Generator.js"></script>
+    <script src="JavaScript/Wordlist.js"></script>
+    <script src="JavaScript/PassQuest.js"></script>
+</body>
+</html>
