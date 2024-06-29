@@ -13,32 +13,54 @@ Object.keys(navLinks).forEach(key => {
     Object.keys(navSections).forEach(k => navSections[k].classList.toggle('off', k!== key));
     });
 });
+
+// Nav Responsive Box
+document.addEventListener('DOMContentLoaded', () => {
+  const navCollapseButton = document.getElementById('nav-collapse');
+  const navCollapseBox = document.getElementById('nav-collapse-box');
+  const navContainer = document.getElementById('nav-container');
+  const elementsToToggle = [...document.querySelectorAll('#home-link, #team-link,.drop-box')];
+  let elementsInCollapseBox = false;
+
+  const toggleElements = (parent) => {
+    elementsToToggle.forEach((element) => parent.appendChild(element));
+    elementsInCollapseBox = parent === navCollapseBox;
+  };
+
+  const toggleLinks = (display) => {
+    document.querySelectorAll('nav.links').forEach((link) => (link.style.display = display));
+  };
+
+  navCollapseButton.addEventListener('click', () => {
+    toggleElements(elementsInCollapseBox? navContainer : navCollapseBox);
+    toggleLinks(elementsInCollapseBox? 'none' : 'block');
+  });
+
+  window.addEventListener('resize', () => {
+    const parent = window.innerWidth > 425? navContainer : navCollapseBox;
+    toggleElements(parent);
+    toggleLinks(window.innerWidth > 425? 'block' : 'none');
+  });
+});
 // -----------------------------------------------------------
 // Light - Dark Mode Toggle Event
 const lightModeButton = document.getElementById('light-mode');
 const darkModeButton = document.getElementById('dark-mode');
 const themeStylesheet = document.getElementById('theme-stylesheet');
-const canvasStylesheet = document.getElementById('canvas-stylesheet');
 
 window.addEventListener('DOMContentLoaded', () => {
     const theme = localStorage.getItem('theme') || 'CSS/Main.css';
-    const canvasTheme = localStorage.getItem('canvasTheme') || 'CSS/Canvas.css';
     themeStylesheet.setAttribute('href', theme);
-    canvasStylesheet.setAttribute('href', canvasTheme);
 });
 
 lightModeButton.addEventListener('click', () => {
     themeStylesheet.setAttribute('href', 'CSS/Main-Light.css');
-    canvasStylesheet.setAttribute('href', 'CSS/Canvas-Light.css');
     localStorage.setItem('theme', 'CSS/Main-Light.css');
-    localStorage.setItem('canvasTheme', 'CSS/Canvas-Light.css');
 });
 
 darkModeButton.addEventListener('click', () => {
     themeStylesheet.setAttribute('href', 'CSS/Main.css');
-    canvasStylesheet.setAttribute('href', 'CSS/Canvas.css');
     localStorage.setItem('theme', 'CSS/Main.css');
-    localStorage.setItem('canvasTheme', 'CSS/Canvas.css');
 });
 // -----------------------------------------------------------
 // section-name event listeners
@@ -100,5 +122,31 @@ closeButton.addEventListener('click', () => {
   toggleSection('cards-box', true);
   changeText(defaultText, defaultFontFamily, defaultColor);
   closeButton.classList.add('off');
+});
+// -----------------------------------------------------------
+// Cards IMG Rsponsive Move
+const reorderCards = () => {
+  const isNarrow = window.innerWidth < 734;
+  document.querySelectorAll('.card').forEach((card) => {
+    const imgDiv = card.querySelector('.img');
+    const cardData = card.querySelector('.card-data');
+    card.insertBefore(imgDiv, isNarrow? card.firstChild : cardData.nextSibling);
+  });
+};
+
+window.addEventListener('resize', reorderCards);
+reorderCards();
+// -----------------------------------------------------------
+// Team Links Buttons
+document.addEventListener('DOMContentLoaded', function() {
+  const temrevilButton = document.getElementById('temrevil');
+  const eslamButton = document.getElementById('eslam');
+  
+  temrevilButton.addEventListener('click', function() {
+    window.open('https://temrevil.github.io/revil/Index.html', '_blank');
+  });
+  eslamButton.addEventListener('click', function() {
+    window.open('#', '_blank');
+  });
 });
 // -----------------------------------------------------------

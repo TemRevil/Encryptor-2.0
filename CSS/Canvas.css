@@ -34,21 +34,21 @@ body {
 }
 
 .bouncing-blob--blue {
-    background: #124;
+    background: #4680ff;
 }
 
-.bouncing-blob--white {
-    background: #124;
+.bouncing-blob--blue-2 {
+    background: #0051ff;
     z-index: 2;
     width: 15vw;
 }
 
 .bouncing-blob--purple {
-    background: #124;
+    background: #7041f1;
 }
 
-.bouncing-blob--pink {
-    background: #124;
+.bouncing-blob--blue-3 {
+    background: #2e3cff50;
 }
 
 .bouncing-blobs-container {

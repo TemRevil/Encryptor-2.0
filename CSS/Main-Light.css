@@ -69,12 +69,16 @@ body::-webkit-scrollbar-thumb {
 }
 
 :root {
-    --rich-black: #080e21ff;
-    --rich-light: #101b3fff;
+    --oxford-blue: #0a1128ff;
+    --penn-blue: #001f54ff;
+    --indigo-dye: #034078ff;
+    --cerulean: #1282a2ff;
+    --lavender: #c8d6efff;    
+    --alice-white: #edf2fbff;    
+    --white: #fefcfbff;
     --french-rose: #f44174ff;
     --sgbus-green: #7ddf64ff;
     --non-photo-blue: #59d8ff;
-    --ghost-white: #f6f8ffff;
     --box-shadow: #ffffff10;
 }
 
@@ -115,7 +119,7 @@ body::-webkit-scrollbar-thumb {
 .box {
     width: 425px;
     padding: 20px;
-    background-color: var(--rich-light);
+    background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0px 7px 20px #1234564b;
 }
@@ -127,7 +131,7 @@ p {
     font-family: 'Exo', 'Rubik', 'Cairo';
     font-weight: 700;
     font-size: 150px;
-    color: var(--ghost-white);
+    color: var(--oxford-blue);
     transition: 0.2s 0s linear;
     animation: fade-in 0.7s 0s forwards ease-in-out;
 }
@@ -135,7 +139,7 @@ p {
     font-family: 'Rubik', 'Exo', 'Cairo';
     font-weight: 700;
     font-size: 24px;
-    color: var(--ghost-white);
+    color: var(--oxford-blue);
     transition: 0.2s 0s linear;
     animation: fade-in 0.7s 0s forwards ease-in-out;
 }
@@ -143,7 +147,7 @@ p {
     font-family: 'Cairo', 'Exo', 'Rubik';
     font-weight: 700;
     font-size: 42px;
-    color: var(--ghost-white);
+    color: var(--indigo-dye);
     transition: 0.2s 0s linear;
     animation: fade-in 0.7s 0s forwards ease-in-out;
 }
@@ -151,7 +155,7 @@ p {
     font-family: 'Rubik', 'Exo', 'Cairo';
     font-weight: 100;
     font-size: 22px;
-    color: var(--ghost-white);
+    color: var(--oxford-blue);
     transition: 0.2s 0s linear;
 }
 .links {
@@ -159,7 +163,7 @@ p {
     font-family: 'Cairo', 'Exo', 'Rubik';
     font-weight: 900;
     font-size: 22px;
-    color: var(--ghost-white);
+    color: var(--penn-blue);
     transition: 0.2s 0s linear;
 }
 .links:hover {
@@ -176,6 +180,7 @@ hr {
 /* Navigation Wide */
 nav {
     width: 100%;
+    align-items: flex-start;
     padding: 20px;
     backdrop-filter: blur(100px);
 }
@@ -191,6 +196,40 @@ nav .img:active {
 }
 nav .links {
     margin: 0 10px;
+}
+
+.drop-box {
+    position: relative;
+}
+.drop-box:hover .drop-menu, .drop-box:focus-within .drop-menu, .drop-box:focus-visible .drop-menu, .drop-box:active .drop-menu {
+    display: flex;
+}
+.drop-menu {
+    width: 150px;
+    display: none;
+    position: absolute;
+    top: 35px;
+    padding: 5px;
+    background-color: var(--oxford-blue);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    animation: fade-in 0.2s 0s forwards ease-in-out;
+}
+
+#nav-collapse-box {
+    align-items: center;
+}
+#nav-collapse {
+    width: 70px;
+    display: none;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+#nav-collapse svg {
+    width: 100%;
+    height: 100%;
 }
 
 .mode-btn {
@@ -248,7 +287,7 @@ nav .links {
 }
 #close-section {
     background-color: transparent;
-    color: var(--ghost-white);
+    color: var(--oxford-blue);
     font-size: 52px;
     border: none;
     border-radius: 5px;
@@ -269,7 +308,7 @@ nav .links {
 .card {
     width: 95%;
     max-height: 210px;
-    background-color: var(--rich-light);
+    background-color: var(--alice-white);
     border-radius: 15px;
     box-shadow: 0px 7px 100px var(--box-shadow);
     overflow: hidden;
@@ -308,26 +347,38 @@ nav .links {
     transition: 0.1s 0s ease-in-out;
 }
 .btn:hover {
-    background-color: var(--rich-light) !important;
+    background-color: var(--alice-white) !important;
 }
 .btn:active {
     scale: 0.9;
 }
 #Generator {
     background-color: var(--french-rose);
+    color: var(--white);
+}
+#Generator:hover {
+    color: var(--oxford-blue);
 }
 #Wordlist {
     background-color: var(--sgbus-green);
+    color: var(--white);
+}
+#Wordlist:hover {
+    color: var(--oxford-blue);
 }
 #PassQuest {
     background-color: var(--non-photo-blue);
+    color: var(--white);
+}
+#PassQuest:hover {
+    color: var(--oxford-blue);
 }
 /* -------------------------------------------------- */
 /* Generator */
 .check-box {
     width: 180px;
     height: 180px;
-    background-color: var(--rich-light);
+    background-color: var(--alice-white);
     font-size: 32px;
     border: none;
     border-radius: 10px;
@@ -335,13 +386,14 @@ nav .links {
     transition: 0.1s 0s ease-in-out;
 }
 .check-box:hover {
-    background-color: #182758;
+    background-color: #d5e3fd;
 }
 .check-box:active {
     scale: 0.9;
 }
 .check-box.active {
     background-color: #3395ff;
+    color: var(--alice-white);
 }
 
 #range-num {
@@ -359,7 +411,7 @@ nav .links {
     appearance: none;
     width: 95%;
     height: 8px;
-    background-color: var(--rich-black);
+    background-color: var(--oxford-blue);
     overflow: hidden;
     border-radius: 999px;
     transition: 0.1s 0s ease-in-out;
@@ -369,8 +421,8 @@ nav .links {
     -webkit-appearance: none;
     width: 0;
     height: 0;
-    -webkit-box-shadow: -200px 0 0 200px #fff;
-    box-shadow: -200px 0 0 200px #fff;
+    -webkit-box-shadow: -200px 0 0 200px #3395ff;
+    box-shadow: -200px 0 0 200px #3395ff;
 }
 .slider:hover .level {
     height: 16px;
@@ -383,11 +435,12 @@ nav .links {
     background-color: transparent;
     outline: none;
     border: none;
-    border-bottom: 2px var(--ghost-white) solid;
+    border-bottom: 2px var(--oxford-blue) solid;
 }
 .btn-2 {
     padding: 10px 17px;
     background-color: #3395ff;
+    color: var(--alice-white);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -404,7 +457,7 @@ nav .links {
 .save-box {
     width: 420px;
     padding: 10px 0px;
-    background-color: var(--ghost-white);
+    background-color: var(--alice-white);
     border-radius: 10px;
     box-shadow: 0px 7px 1000px var(--box-shadow);
     animation: get-in 0.7s 0s forwards ease-in-out;
@@ -415,10 +468,10 @@ nav .links {
 .save-box .align {
     margin-left: 15px;
     font-family: 'Cairo', 'Exo', 'Rubik';
-    color: var(--rich-black) !important;
+    color: var(--oxford-blue) !important;
 }
 .save-box .text {
-    color: var(--rich-black);
+    color: var(--oxford-blue);
 }
 .saving-box-input {
     padding: 10px;
@@ -441,7 +494,7 @@ nav .links {
     padding-right: 10px;
 }
 .save-box-btn .btn-2 {
-    color: var(--ghost-white);
+    color: var(--alice-white);
 }
 .save-box-btn .btn-2:hover {
     background-color: #007bff;
@@ -454,7 +507,7 @@ nav .links {
 #wordlist-input {
     width: 95%;
     padding: 10px 20px;
-    background-color: var(--rich-black);
+    background-color: var(--lavender);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -469,7 +522,7 @@ nav .links {
     width: 100px;
     margin-left: 5px;
     padding: 10px 20px;
-    background-color: var(--rich-black);
+    background-color: var(--lavender);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -485,7 +538,7 @@ nav .links {
     width: 85%;
     height: 10px;
     position: relative;
-    background-color: var(--rich-black);
+    background-color: var(--alice-white);
     border-radius: 999px;
     overflow: hidden;
 }
@@ -493,13 +546,13 @@ nav .links {
     width: 0%;
     height: 100%;
     position: absolute;
-    background-color: var(--ghost-white);
+    background-color: var(--oxford-blue);
 }
 /* -------------------------------------------------- */
 #passquest-input {
     width: 95%;
     padding: 10px 20px;
-    background-color: var(--rich-black);
+    background-color: var(--lavender);
     outline: none;
     border: none;
     border-radius: 5px;
@@ -513,6 +566,13 @@ nav .links {
 }
 .active {
     background-color: #3395ff;
+}
+.active .align, .active .text {
+    color: var(--white);
+}
+
+.passquest .box .img {
+    width: 33.33%;
 }
 /* -------------------------------------------------- */
 /* Team Section */
@@ -629,7 +689,7 @@ nav .links {
         top: 0;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 734px) {
     .title {
         font-size: 95px;
     }
@@ -649,6 +709,7 @@ nav .links {
     }
     #close-section {
         position: absolute;
+        z-index: 1;
     }
 
     .cards-box {
@@ -706,6 +767,19 @@ nav .links {
 
     .box {
         width: 100%;
+    }
+
+    nav .links {
+        display: none;
+    }
+    nav .img {
+        margin-right: 0px;
+    }
+    #nav-collapse-box .links {
+        display: block;
+    }
+    #nav-collapse {
+        display: flex;
     }
 
     .title-card {
