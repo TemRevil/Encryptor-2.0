@@ -55,7 +55,6 @@ export default function Blobs() {
 
   return (
     <div className="bouncing-blobs-container" ref={containerRef} aria-hidden="true">
-      <div className="bouncing-blobs-glass" />
       <div className="bouncing-blobs">
         <div className="bouncing-blob bouncing-blob--blue" />
         <div className="bouncing-blob bouncing-blob--blue" />
