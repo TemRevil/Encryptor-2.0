@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
 import Blobs from './Blobs';
 import Navbar, { type NavView } from './Navbar';
@@ -40,6 +41,14 @@ const TOOLS: { key: Tool; title: string; desc: string; img: string; fontVar: str
 ];
 
 const DEFAULT = { text: 'Home', font: 'var(--font-rubik)', color: 'var(--text)' };
+
+// Shared fade + blur transition for every view/tool swap (framer-motion).
+const fadeBlur = {
+  initial: { opacity: 0, filter: 'blur(14px)' },
+  animate: { opacity: 1, filter: 'blur(0px)' },
+  exit: { opacity: 0, filter: 'blur(14px)' },
+  transition: { duration: 0.35, ease: 'easeOut' as const },
+};
 
 // Scramble-in text effect (ported from the original changeText): cycles random
 // glyphs while progressively locking in the target string over ~1s.
@@ -94,52 +103,64 @@ export default function EncryptorApp() {
       <Navbar view={view} onNavigate={(v) => { setView(v); if (v === 'team') setTool(null); }} />
       <Blobs />
 
-      {view === 'home' ? (
-        <section className="home flex row">
-          <section className="title-card flex col">
-            <p className="title">Encryptor</p>
-            <p className="align">More Secure, More Better</p>
-            <div className="section-option flex row gap">
-              <button id="close-section" className={tool ? '' : 'off'} onClick={closeTool} aria-label="Back to home">
-                <ChevronLeftIcon />
-              </button>
-              <span id="section-name" className="align" style={{ fontFamily: active ? active.fontVar : DEFAULT.font, color: active ? active.color : DEFAULT.color }}>
-                {sectionName}
-              </span>
-            </div>
-          </section>
-
-          {!tool && (
-            <section className="cards-box flex col">
-              {TOOLS.map((t) => {
-                const card = (
-                  <div className="card-img" key="img">
-                    <Image src={t.img} alt={t.title} width={300} height={210} />
-                    <button className="btn align" id={`card-${t.title}`} onClick={() => openTool(t.key)}>{t.title}</button>
-                  </div>
-                );
-                const data = (
-                  <div className="card-data flex col" key="data">
-                    <p className="align-2">{t.title}</p>
-                    <p className="text">{t.desc}</p>
-                  </div>
-                );
-                return (
-                  <div className="card flex row" key={t.key}>
-                    {narrow ? [card, data] : [data, card]}
-                  </div>
-                );
-              })}
+      <AnimatePresence mode="wait">
+        {view === 'home' ? (
+          <motion.section key="home" className="home flex row" {...fadeBlur}>
+            <section className="title-card flex col">
+              <p className="title">Encryptor</p>
+              <p className="align">More Secure, More Better</p>
+              <div className="section-option flex row gap">
+                <button id="close-section" className={tool ? '' : 'off'} onClick={closeTool} aria-label="Back to home">
+                  <ChevronLeftIcon />
+                </button>
+                <span id="section-name" className="align" style={{ fontFamily: active ? active.fontVar : DEFAULT.font, color: active ? active.color : DEFAULT.color }}>
+                  {sectionName}
+                </span>
+              </div>
             </section>
-          )}
 
-          {tool === 'generator' && <Generator />}
-          {tool === 'wordlist' && <Wordlist />}
-          {tool === 'passquest' && <PassQuest />}
-        </section>
-      ) : (
-        <Team />
-      )}
+            {/* Cards <-> tool swap: each fades + blurs in/out. initial={false} so
+                this doesn't double-animate when the whole home panel first mounts
+                (the outer AnimatePresence already handles that entrance). */}
+            <div className="home-panel">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div key={tool ?? 'cards'} {...fadeBlur} style={{ width: '100%' }}>
+                  {!tool && (
+                    <section className="cards-box flex col">
+                      {TOOLS.map((t) => {
+                        const cardImg = (
+                          <div className="card-img" key="img">
+                            <Image src={t.img} alt={t.title} width={300} height={210} />
+                            <button className="btn align" id={`card-${t.title}`} onClick={() => openTool(t.key)}>{t.title}</button>
+                          </div>
+                        );
+                        const data = (
+                          <div className="card-data flex col" key="data">
+                            <p className="align-2">{t.title}</p>
+                            <p className="text">{t.desc}</p>
+                          </div>
+                        );
+                        return (
+                          <div className="card flex row" key={t.key}>
+                            {narrow ? [cardImg, data] : [data, cardImg]}
+                          </div>
+                        );
+                      })}
+                    </section>
+                  )}
+                  {tool === 'generator' && <Generator />}
+                  {tool === 'wordlist' && <Wordlist />}
+                  {tool === 'passquest' && <PassQuest />}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.section>
+        ) : (
+          <motion.div key="team" {...fadeBlur}>
+            <Team />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
